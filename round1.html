@@ -8,99 +8,126 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f4f1de;
+            padding: 20px;
         }
+        
         .matchup {
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff3e0;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .videos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        iframe {
+            width: 45%;
+            height: 315px;
+            border-radius: 8px;
+            border: 4px solid #81b29a;
+        }
+
+        .vote-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .vote-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .green {
+            background-color: #81b29a;
+            color: white;
+        }
+
+        .coral {
+            background-color: #e07a5f;
+            color: white;
+        }
+
+        .vote-button:hover {
+            opacity: 0.8;
+        }
+
+        .vote-button:disabled {
+            background-color: #d3d3d3;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
-    <h1>Round 1: SNL Sketches</h1>
-    <p>Watch the sketches and vote for your favorite in each matchup!</p>
-    
-    <div class="matchup">
-        <h3>More Cowbell vs. Cars (Cut for Time)</h3>
-        <a href="https://www.youtube.com/watch?v=NHTe2_b8uEA" target="_blank">More Cowbell</a>
-        <a href="https://www.youtube.com/watch?v=uxY5eoMvjRA" target="_blank">Cars (Cut for Time)</a>
-        <button onclick="vote(1, 'More Cowbell')">Vote More Cowbell</button>
-        <button onclick="vote(1, 'Cars')">Vote Cars</button>
-    </div>
-    
-    <div class="matchup">
-        <h3>Lunch Lady Land vs. What's Wrong With Tanya</h3>
-        <a href="https://www.youtube.com/watch?v=VY14zcUM9SI" target="_blank">Lunch Lady Land</a>
-        <a href="https://www.youtube.com/watch?v=ctPt74CNBA4" target="_blank">What's Wrong With Tanya</a>
-        <button onclick="vote(2, 'Lunch Lady Land')">Vote Lunch Lady Land</button>
-        <button onclick="vote(2, 'Tanya')">Vote Tanya</button>
-    </div>
 
-    <div class="matchup">
-        <h3>Dear Sister vs. Jafar on Desantis</h3>
-        <a href="https://www.youtube.com/watch?v=vmd1qMN5Yo0" target="_blank">Dear Sister</a>
-        <a href="https://www.youtube.com/watch?v=Kcu7w0uPK4g" target="_blank">Jafar on Desantis</a>
-        <button onclick="vote(3, 'Dear Sister')">Vote Dear Sister</button>
-        <button onclick="vote(3, 'Jafar')">Vote Jafar</button>
-    </div>
-
-    <div class="matchup">
-        <h3>Dick in a Box vs. Lisa from Temecula</h3>
-        <a href="https://www.youtube.com/watch?v=Rt0spqQtMKg" target="_blank">Dick in a Box</a>
-        <a href="https://www.youtube.com/watch?v=zxxCaw74ptk" target="_blank">Lisa from Temecula</a>
-        <button onclick="vote(4, 'Dick in a Box')">Vote Dick in a Box</button>
-        <button onclick="vote(4, 'Lisa')">Vote Lisa</button>
-    </div>
-
-    <div class="matchup">
-        <h3>Close Encounter vs. Oil Tycoon</h3>
-        <a href="https://www.youtube.com/watch?v=PfPdYYsEfAE" target="_blank">Close Encounter</a>
-        <a href="https://www.youtube.com/watch?v=t7HD2xG92-0" target="_blank">Oil Tycoon</a>
-        <button onclick="vote(5, 'Close Encounter')">Vote Close Encounter</button>
-        <button onclick="vote(5, 'Oil Tycoon')">Vote Oil Tycoon</button>
-    </div>
-
-    <div class="matchup">
-        <h3>Matt Foley vs. St. Monica's High School Talent Show</h3>
-        <a href="https://www.youtube.com/watch?v=Xv2VIEY9-A8" target="_blank">Matt Foley</a>
-        <a href="https://www.youtube.com/watch?v=OY2bBzz5kwc" target="_blank">St. Monica's Talent Show</a>
-        <button onclick="vote(6, 'Matt Foley')">Vote Matt Foley</button>
-        <button onclick="vote(6, 'Talent Show')">Vote Talent Show</button>
-    </div>
-
-    <div class="matchup">
-        <h3>Bodega Lobster vs. Simu & Bowen</h3>
-        <a href="https://www.youtube.com/watch?v=Pj-D0jc17D0" target="_blank">Bodega Lobster</a>
-        <a href="https://www.youtube.com/watch?v=3e0tszep890" target="_blank">Simu & Bowen</a>
-        <button onclick="vote(7, 'Bodega Lobster')">Vote Bodega Lobster</button>
-        <button onclick="vote(7, 'Simu & Bowen')">Vote Simu & Bowen</button>
-    </div>
-
-    <div class="matchup">
-        <h3>The Californians vs. MacGruber</h3>
-        <a href="https://www.youtube.com/watch?v=Tt-tG6ufH90" target="_blank">The Californians</a>
-        <a href="https://www.youtube.com/watch?v=ZPNZv8J94uA" target="_blank">MacGruber</a>
-        <button onclick="vote(8, 'The Californians')">Vote The Californians</button>
-        <button onclick="vote(8, 'MacGruber')">Vote MacGruber</button>
-    </div>
+    <h1>Vote for the Funniest Sketch - Round 1</h1>
 
     <script>
-      function vote(round, matchup, choice, clickedButtonId, otherButtonId) {
-    document.getElementById(clickedButtonId).disabled = true;
-    document.getElementById(otherButtonId).disabled = true;
-    document.getElementById(clickedButtonId).innerText = "Vote Recorded";
-    localStorage.setItem(round + "-" + matchup, choice);
+        function createMatchup(matchupNum, sketch1, link1, sketch2, link2) {
+            document.write(`
+                <div class="matchup">
+                    <h3>${sketch1} vs. ${sketch2}</h3>
+                    <div class="videos">
+                        <iframe src="${link1.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
+                        <iframe src="${link2.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
+                    </div>
+                    <div class="vote-buttons">
+                        <button id="vote${matchupNum}a" class="vote-button green" 
+                            onclick="vote(1, '${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">
+                            Vote for ${sketch1}
+                        </button>
+                        <button id="vote${matchupNum}b" class="vote-button coral" 
+                            onclick="vote(1, '${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">
+                            Vote for ${sketch2}
+                        </button>
+                    </div>
+                </div>
+            `);
+        }
 
-    // Send vote to Google Sheets
-    fetch("https://script.google.com/macros/s/AKfycbznBlUwEGMOVkMD6Ed6cTEQ7QpCoCq7ZQxeVC3E59xib1UVODzck517ngEVqck-YI5z7w/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ round: round, matchup: matchup, choice: choice })
-    })
-    .then(response => response.text())
-    .then(data => console.log("Vote submitted: " + data))
-    .catch(error => console.error("Error:", error));
-}
+        function vote(round, matchupNum, choice, clickedButtonId, otherButtonId) {
+            document.getElementById(clickedButtonId).disabled = true;
+            document.getElementById(otherButtonId).disabled = true;
+            document.getElementById(clickedButtonId).innerText = "Vote Recorded";
+            localStorage.setItem(round + "-" + matchupNum, choice);
+
+            // Send vote to Google Sheets
+            fetch("https://script.google.com/macros/s/AKfycbznBlUwEGMOVkMD6Ed6cTEQ7QpCoCq7ZQxeVC3E59xib1UVODzck517ngEVqck-YI5z7w/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ round: round, matchup: matchupNum, choice: choice })
+            })
+            .then(response => response.text())
+            .then(data => console.log("Vote submitted: " + data))
+            .catch(error => console.error("Error:", error));
+        }
     </script>
+
+    <script>
+        createMatchup(1, "More Cowbell", "https://www.youtube.com/watch?v=NHTe2_b8uEA", "Cars (Cut for Time)", "https://www.youtube.com/watch?v=uxY5eoMvjRA");
+        createMatchup(2, "Lunch Lady Land", "https://www.youtube.com/watch?v=VY14zcUM9SI", "What's Wrong With Tanya", "https://www.youtube.com/watch?v=ctPt74CNBA4");
+        createMatchup(3, "Dear Sister", "https://www.youtube.com/watch?v=vmd1qMN5Yo0", "Jafar on Desantis", "https://www.youtube.com/watch?v=Kcu7w0uPK4g");
+        createMatchup(4, "Dick in a Box", "https://www.youtube.com/watch?v=Rt0spqQtMKg", "Lisa from Temecula", "https://www.youtube.com/watch?v=zxxCaw74ptk");
+        createMatchup(5, "Close Encounter", "https://www.youtube.com/watch?v=PfPdYYsEfAE", "Oil Tycoon", "https://www.youtube.com/watch?v=t7HD2xG92-0");
+        createMatchup(6, "Matt Foley", "https://www.youtube.com/watch?v=Xv2VIEY9-A8", "St. Monica's High School Talent Show", "https://www.youtube.com/watch?v=OY2bBzz5kwc");
+        createMatchup(7, "Bodega Lobster", "https://www.youtube.com/watch?v=Pj-D0jc17D0", "Simu & Bowen", "https://www.youtube.com/watch?v=3e0tszep890");
+        createMatchup(8, "The Californians", "https://www.youtube.com/watch?v=Tt-tG6ufH90", "MacGruber", "https://www.youtube.com/watch?v=ZPNZv8J94uA");
+    </script>
+
 </body>
 </html>
