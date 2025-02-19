@@ -76,42 +76,49 @@
 <body>
 
     <h1>Vote for the Funniest Sketch - Round 3</h1>
-    
-    <div id="matchups"></div>
 
     <script>
         function createMatchup(matchupNum, sketch1, link1, sketch2, link2) {
-            const matchupsContainer = document.getElementById("matchups");
-
-            const matchupDiv = document.createElement("div");
-            matchupDiv.classList.add("matchup");
-
-            // Convert YouTube links to embed format
-            const embedLink1 = link1.split("?")[0].replace("watch?v=", "embed/");
-            const embedLink2 = link2.split("?")[0].replace("watch?v=", "embed/");
-
-            matchupDiv.innerHTML = `
-                <div class="videos">
-                    <iframe src="${embedLink1}" allowfullscreen></iframe>
-                    <iframe src="${embedLink2}" allowfullscreen></iframe>
+            document.write(`
+                <div class="matchup">
+                    <h3>${sketch1} vs. ${sketch2}</h3>
+                    <div class="videos">
+                        <iframe src="${link1.replace('watch?v=', 'embed/')}"></iframe>
+                        <iframe src="${link2.replace('watch?v=', 'embed/')}"></iframe>
+                    </div>
+                    <div class="vote-buttons">
+                        <button id="vote${matchupNum}a" class="vote-button green" 
+                            onclick="vote(3, '${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">
+                            Vote for ${sketch1}
+                        </button>
+                        <button id="vote${matchupNum}b" class="vote-button coral" 
+                            onclick="vote(3, '${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">
+                            Vote for ${sketch2}
+                        </button>
+                    </div>
                 </div>
-                <div class="vote-buttons">
-                    <button id="vote${matchupNum}a" class="vote-button green" onclick="vote('3-${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">Vote for ${sketch1}</button>
-                    <button id="vote${matchupNum}b" class="vote-button coral" onclick="vote('3-${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">Vote for ${sketch2}</button>
-                </div>
-            `;
-
-            matchupsContainer.appendChild(matchupDiv);
+            `);
         }
 
-        function vote(round, choice, clickedButtonId, otherButtonId) {
+        function vote(round, matchupNum, choice, clickedButtonId, otherButtonId) {
             document.getElementById(clickedButtonId).disabled = true;
             document.getElementById(otherButtonId).disabled = true;
             document.getElementById(clickedButtonId).innerText = "Vote Recorded";
-            localStorage.setItem(round, choice);
-        }
+            localStorage.setItem(round + "-" + matchupNum, choice);
 
-        // Populate matchups
+            // Send vote to Google Sheets
+            fetch("https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ round: round, matchup: matchupNum, choice: choice })
+            })
+            .then(response => response.text())
+            .then(data => console.log("Vote submitted: " + data))
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+
+    <script>
         createMatchup(1, "The Crack Fox", "https://www.youtube.com/watch?v=5qP2hXUwQTM", "Grapist", "https://www.youtube.com/watch?v=mqgiEQXGetI");
         createMatchup(2, "Drax Them Sklounts", "https://www.youtube.com/watch?v=eiWIOKKuyGE", "Colin the Chicken", "https://www.youtube.com/watch?v=G__PVLB8Nm4");
         createMatchup(3, "Tyrone Biggums", "https://www.youtube.com/watch?v=7vUvQHYc3K0", "Philosopher Football", "https://www.youtube.com/watch?v=LfduUFF_i1A");
