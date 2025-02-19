@@ -76,21 +76,32 @@
 <body>
 
     <h1>Vote for the Funniest Sketch - Round 3</h1>
+    
+    <div id="matchups"></div>
 
     <script>
         function createMatchup(matchupNum, sketch1, link1, sketch2, link2) {
-            document.write(`
-                <div class="matchup">
-                    <div class="videos">
-                        <iframe src="${link1.replace('watch?v=', 'embed/')}"></iframe>
-                        <iframe src="${link2.replace('watch?v=', 'embed/')}"></iframe>
-                    </div>
-                    <div class="vote-buttons">
-                        <button id="vote${matchupNum}a" class="vote-button green" onclick="vote('3-${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">Vote for ${sketch1}</button>
-                        <button id="vote${matchupNum}b" class="vote-button coral" onclick="vote('3-${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">Vote for ${sketch2}</button>
-                    </div>
+            const matchupsContainer = document.getElementById("matchups");
+
+            const matchupDiv = document.createElement("div");
+            matchupDiv.classList.add("matchup");
+
+            // Convert YouTube links to embed format
+            const embedLink1 = link1.split("?")[0].replace("watch?v=", "embed/");
+            const embedLink2 = link2.split("?")[0].replace("watch?v=", "embed/");
+
+            matchupDiv.innerHTML = `
+                <div class="videos">
+                    <iframe src="${embedLink1}" allowfullscreen></iframe>
+                    <iframe src="${embedLink2}" allowfullscreen></iframe>
                 </div>
-            `);
+                <div class="vote-buttons">
+                    <button id="vote${matchupNum}a" class="vote-button green" onclick="vote('3-${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">Vote for ${sketch1}</button>
+                    <button id="vote${matchupNum}b" class="vote-button coral" onclick="vote('3-${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">Vote for ${sketch2}</button>
+                </div>
+            `;
+
+            matchupsContainer.appendChild(matchupDiv);
         }
 
         function vote(round, choice, clickedButtonId, otherButtonId) {
@@ -99,17 +110,16 @@
             document.getElementById(clickedButtonId).innerText = "Vote Recorded";
             localStorage.setItem(round, choice);
         }
-    </script>
 
-    <script>
-        createMatchup(1, "The Crack Fox", "https://youtu.be/5qP2hXUwQTM", "Grapist", "https://youtu.be/mqgiEQXGetI");
-        createMatchup(2, "Drax Them Sklounts", "https://youtu.be/eiWIOKKuyGE", "Colin the Chicken", "https://youtu.be/G__PVLB8Nm4");
-        createMatchup(3, "Tyrone Biggums", "https://youtu.be/7vUvQHYc3K0", "Philosopher Football", "https://youtu.be/LfduUFF_i1A");
-        createMatchup(4, "Substitute Teacher", "https://youtu.be/Dd7FixvoKBw", "Portland Dancers", "https://youtu.be/OW0pj3pXf84?t=165");
-        createMatchup(5, "Real Death of Abraham Lincoln", "https://youtu.be/VPJ0TAaJDbM", "Wheels Ontario", "https://youtu.be/WcWbo6GLRfk");
-        createMatchup(6, "I Said Biiitch", "https://youtu.be/5LGEiIL1__s", "Walkabout", "https://youtu.be/ArL7E6fq_cw");
-        createMatchup(7, "Put A Bird On It", "https://youtu.be/GNpIOlDhigw", "Rick James", "https://youtu.be/ry2XlLKctiI");
-        createMatchup(8, "The Dream of the 90's", "https://youtu.be/U4hShMEk1Ew", "No Makeup", "https://youtu.be/IEr2iAqPnoQ");
+        // Populate matchups
+        createMatchup(1, "The Crack Fox", "https://www.youtube.com/watch?v=5qP2hXUwQTM", "Grapist", "https://www.youtube.com/watch?v=mqgiEQXGetI");
+        createMatchup(2, "Drax Them Sklounts", "https://www.youtube.com/watch?v=eiWIOKKuyGE", "Colin the Chicken", "https://www.youtube.com/watch?v=G__PVLB8Nm4");
+        createMatchup(3, "Tyrone Biggums", "https://www.youtube.com/watch?v=7vUvQHYc3K0", "Philosopher Football", "https://www.youtube.com/watch?v=LfduUFF_i1A");
+        createMatchup(4, "Substitute Teacher", "https://www.youtube.com/watch?v=Dd7FixvoKBw", "Portland Dancers", "https://www.youtube.com/watch?v=OW0pj3pXf84");
+        createMatchup(5, "Real Death of Abraham Lincoln", "https://www.youtube.com/watch?v=VPJ0TAaJDbM", "Wheels Ontario", "https://www.youtube.com/watch?v=WcWbo6GLRfk");
+        createMatchup(6, "I Said Biiitch", "https://www.youtube.com/watch?v=5LGEiIL1__s", "Walkabout", "https://www.youtube.com/watch?v=ArL7E6fq_cw");
+        createMatchup(7, "Put A Bird On It", "https://www.youtube.com/watch?v=GNpIOlDhigw", "Rick James", "https://www.youtube.com/watch?v=ry2XlLKctiI");
+        createMatchup(8, "The Dream of the 90's", "https://www.youtube.com/watch?v=U4hShMEk1Ew", "No Makeup", "https://www.youtube.com/watch?v=IEr2iAqPnoQ");
     </script>
 
 </body>
