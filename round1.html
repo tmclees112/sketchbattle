@@ -85,9 +85,22 @@
     </div>
 
     <script>
-        function vote(matchup, choice) {
-            alert(`Vote recorded: ${choice} in Matchup ${matchup}`);
-        }
+      function vote(round, matchup, choice, clickedButtonId, otherButtonId) {
+    document.getElementById(clickedButtonId).disabled = true;
+    document.getElementById(otherButtonId).disabled = true;
+    document.getElementById(clickedButtonId).innerText = "Vote Recorded";
+    localStorage.setItem(round + "-" + matchup, choice);
+
+    // Send vote to Google Sheets
+    fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ round: round, matchup: matchup, choice: choice })
+    })
+    .then(response => response.text())
+    .then(data => console.log("Vote submitted: " + data))
+    .catch(error => console.error("Error:", error));
+}
     </script>
 </body>
 </html>
