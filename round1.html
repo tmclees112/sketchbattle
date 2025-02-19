@@ -112,7 +112,7 @@
             localStorage.setItem(round + "-" + matchupNum, choice);
 
             // Send vote to Google Sheets
-            fetch("https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbznBlUwEGMOVkMD6Ed6cTEQ7QpCoCq7ZQxeVC3E59xib1UVODzck517ngEVqck-YI5z7w/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ round: round, matchup: matchupNum, choice: choice })
