@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Round 1 Voting</title>
+    <title>Funniest Sketch Vote - Round 1</title>
     <style>
         body {
+            background-color: #f4f1de;
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f4f1de;
             padding: 20px;
         }
-        
+
         .matchup {
             display: flex;
             flex-direction: column;
@@ -76,28 +76,33 @@
 <body>
 
     <h1>Vote for the Funniest Sketch - Round 1</h1>
+    
+    <div id="matchups"></div>
 
     <script>
         function createMatchup(matchupNum, sketch1, link1, sketch2, link2) {
-            document.write(`
-                <div class="matchup">
-                    <h3>${sketch1} vs. ${sketch2}</h3>
-                    <div class="videos">
-                        <iframe src="${link1.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
-                        <iframe src="${link2.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
-                    </div>
-                    <div class="vote-buttons">
-                        <button id="vote${matchupNum}a" class="vote-button green" 
-                            onclick="vote(1, '${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">
-                            Vote for ${sketch1}
-                        </button>
-                        <button id="vote${matchupNum}b" class="vote-button coral" 
-                            onclick="vote(1, '${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">
-                            Vote for ${sketch2}
-                        </button>
-                    </div>
+            const matchupsContainer = document.getElementById("matchups");
+
+            const matchupDiv = document.createElement("div");
+            matchupDiv.classList.add("matchup");
+
+            // Convert YouTube links to embed format
+            const embedLink1 = link1.replace("watch?v=", "embed/");
+            const embedLink2 = link2.replace("watch?v=", "embed/");
+
+            matchupDiv.innerHTML = `
+                <h3>${sketch1} vs. ${sketch2}</h3>
+                <div class="videos">
+                    <iframe src="${embedLink1}" allowfullscreen></iframe>
+                    <iframe src="${embedLink2}" allowfullscreen></iframe>
                 </div>
-            `);
+                <div class="vote-buttons">
+                    <button id="vote${matchupNum}a" class="vote-button green" onclick="vote(1, '${matchupNum}', '${sketch1}', 'vote${matchupNum}a', 'vote${matchupNum}b')">Vote for ${sketch1}</button>
+                    <button id="vote${matchupNum}b" class="vote-button coral" onclick="vote(1, '${matchupNum}', '${sketch2}', 'vote${matchupNum}b', 'vote${matchupNum}a')">Vote for ${sketch2}</button>
+                </div>
+            `;
+
+            matchupsContainer.appendChild(matchupDiv);
         }
 
         function vote(round, matchupNum, choice, clickedButtonId, otherButtonId) {
@@ -107,7 +112,7 @@
             localStorage.setItem(round + "-" + matchupNum, choice);
 
             // Send vote to Google Sheets
-            fetch("https://script.google.com/macros/s/AKfycbznBlUwEGMOVkMD6Ed6cTEQ7QpCoCq7ZQxeVC3E59xib1UVODzck517ngEVqck-YI5z7w/exec", {
+            fetch("https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ round: round, matchup: matchupNum, choice: choice })
@@ -116,9 +121,8 @@
             .then(data => console.log("Vote submitted: " + data))
             .catch(error => console.error("Error:", error));
         }
-    </script>
 
-    <script>
+        // Correct Matchups for Round 1
         createMatchup(1, "More Cowbell", "https://www.youtube.com/watch?v=NHTe2_b8uEA", "Cars (Cut for Time)", "https://www.youtube.com/watch?v=uxY5eoMvjRA");
         createMatchup(2, "Lunch Lady Land", "https://www.youtube.com/watch?v=VY14zcUM9SI", "What's Wrong With Tanya", "https://www.youtube.com/watch?v=ctPt74CNBA4");
         createMatchup(3, "Dear Sister", "https://www.youtube.com/watch?v=vmd1qMN5Yo0", "Jafar on Desantis", "https://www.youtube.com/watch?v=Kcu7w0uPK4g");
@@ -127,6 +131,7 @@
         createMatchup(6, "Matt Foley", "https://www.youtube.com/watch?v=Xv2VIEY9-A8", "St. Monica's High School Talent Show", "https://www.youtube.com/watch?v=OY2bBzz5kwc");
         createMatchup(7, "Bodega Lobster", "https://www.youtube.com/watch?v=Pj-D0jc17D0", "Simu & Bowen", "https://www.youtube.com/watch?v=3e0tszep890");
         createMatchup(8, "The Californians", "https://www.youtube.com/watch?v=Tt-tG6ufH90", "MacGruber", "https://www.youtube.com/watch?v=ZPNZv8J94uA");
+
     </script>
 
 </body>
