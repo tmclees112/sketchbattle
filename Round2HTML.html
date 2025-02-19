@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funniest Sketch Vote - Round 2</title>
+    <style>
+        body {
+            background-color: #f4f1de;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .matchup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff3e0;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .videos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        iframe {
+            width: 45%;
+            height: 315px;
+            border-radius: 8px;
+            border: 4px solid #81b29a;
+        }
+
+        .vote-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .vote-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .green {
+            background-color: #81b29a;
+            color: white;
+        }
+
+        .coral {
+            background-color: #e07a5f;
+            color: white;
+        }
+
+        .vote-button:hover {
+            opacity: 0.8;
+        }
+
+        .vote-button:disabled {
+            background-color: #d3d3d3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Vote for the Funniest Sketch - Round 2</h1>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/0lIbwUMG7wU"></iframe>
+            <iframe src="https://www.youtube.com/embed/8F9jXYOH2c0"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote1r2" class="vote-button green" onclick="vote('2-1', 'Lakers Champions Parade', 'vote1r2', 'vote2r2')">Vote for Lakers Champions Parade</button>
+            <button id="vote2r2" class="vote-button coral" onclick="vote('2-1', 'Scott Sterling', 'vote2r2', 'vote1r2')">Vote for Scott Sterling</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/DeahDax24Dg"></iframe>
+            <iframe src="https://www.youtube.com/embed/Plfr2zkfSLk"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote3r2" class="vote-button green" onclick="vote('2-2', 'My Son Is Gay', 'vote3r2', 'vote4r2')">Vote for My Son Is Gay</button>
+            <button id="vote4r2" class="vote-button coral" onclick="vote('2-2', 'Batman Chooses Voice', 'vote4r2', 'vote3r2')">Vote for Batman Chooses Voice</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/uhIk1LjOmqQ"></iframe>
+            <iframe src="https://www.youtube.com/embed/d77AGbhLzGU"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote5r2" class="vote-button green" onclick="vote('2-3', 'Bro Rape', 'vote5r2', 'vote6r2')">Vote for Bro Rape</button>
+            <button id="vote6r2" class="vote-button coral" onclick="vote('2-3', 'Upper Middle Class', 'vote6r2', 'vote5r2')">Vote for Upper Middle Class</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/X37EzJnuntk"></iframe>
+            <iframe src="https://www.youtube.com/embed/gspaoaecNAg"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote7r2" class="vote-button green" onclick="vote('2-4', 'Ball Champions', 'vote7r2', 'vote8r2')">Vote for Ball Champions</button>
+            <button id="vote8r2" class="vote-button coral" onclick="vote('2-4', 'Boys Being Girls', 'vote8r2', 'vote7r2')">Vote for Boys Being Girls</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/xdfMu77sYH4"></iframe>
+            <iframe src="https://www.youtube.com/embed/eJsqv3JStWI"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote9r2" class="vote-button green" onclick="vote('2-5', 'Still Life Fruit', 'vote9r2', 'vote10r2')">Vote for Still Life Fruit</button>
+            <button id="vote10r2" class="vote-button coral" onclick="vote('2-5', 'Teen Girl Squad', 'vote10r2', 'vote9r2')">Vote for Teen Girl Squad</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/wCF3ywukQYA"></iframe>
+            <iframe src="https://www.youtube.com/embed/uzHYgYniGYs"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote11r2" class="vote-button green" onclick="vote('2-6', 'Shoes', 'vote11r2', 'vote12r2')">Vote for Shoes</button>
+            <button id="vote12r2" class="vote-button coral" onclick="vote('2-6', 'New Bike', 'vote12r2', 'vote11r2')">Vote for New Bike</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/90X5NJleYJQ"></iframe>
+            <iframe src="https://www.youtube.com/embed/gIF0UCFd3FM"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote13r2" class="vote-button green" onclick="vote('2-7', 'Trogdor', 'vote13r2', 'vote14r2')">Vote for Trogdor</button>
+            <button id="vote14r2" class="vote-button coral" onclick="vote('2-7', 'Jerry', 'vote14r2', 'vote13r2')">Vote for Jerry</button>
+        </div>
+    </div>
+
+    <div class="matchup">
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/Rt07rT5kNWU"></iframe>
+            <iframe src="https://www.youtube.com/embed/oaYtFLGELB8"></iframe>
+        </div>
+        <div class="vote-buttons">
+            <button id="vote15r2" class="vote-button green" onclick="vote('2-8', 'Batman Has A Dirty Mind', 'vote15r2', 'vote16r2')">Vote for Batman Has A Dirty Mind</button>
+            <button id="vote16r2" class="vote-button coral" onclick="vote('2-8', 'Toast', 'vote16r2', 'vote15r2')">Vote for Toast</button>
+        </div>
+    </div>
+
+    <script>
+        function vote(round, choice, clickedButtonId, otherButtonId) {
+            document.getElementById(clickedButtonId).disabled = true;
+            document.getElementById(otherButtonId).disabled = true;
+            document.getElementById(clickedButtonId).innerText = "Vote Recorded";
+            localStorage.setItem(round, choice);
+        }
+    </script>
+
+</body>
+</html>
