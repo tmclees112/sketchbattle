@@ -106,16 +106,14 @@
             document.getElementById(clickedButtonId).innerText = "Vote Recorded";
             localStorage.setItem(round + "-" + matchupNum, choice);
 
-            // Send vote to Google Sheets
-            fetch("https://script.google.com/macros/s/AKfycbznBlUwEGMOVkMD6Ed6cTEQ7QpCoCq7ZQxeVC3E59xib1UVODzck517ngEVqck-YI5z7w/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ round: round, matchup: matchupNum, choice: choice })
-            })
-            .then(response => response.text())
-            .then(data => console.log("Vote submitted: " + data))
-            .catch(error => console.error("Error:", error));
-        }
+            // Send vote to // Send vote to Wix backend function
+wixData.insert("Votes", { 
+    round: round, 
+    matchup: matchupNum, 
+    choice: choice 
+})
+.then(() => console.log("Vote submitted successfully"))
+.catch(error => console.error("Error:", error));
     </script>
 
     <script>
